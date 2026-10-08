@@ -1,0 +1,1576 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>栾明昊｜企业信息化项目交付 · MES实施 · AI财税平台运营</title>
+  <meta name="description" content="栾明昊 · 4年工作经验。企业信息化项目交付、MES软件实施、AI财税SaaS平台运营。历经苏州科达、两颗数科技、杭州微风企科技，参与新材料企业MES实施、浙江公安远程取证系统建设、温州公安视频会议维保等项目。">
+  <!-- Open Graph -->
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="栾明昊｜企业信息化项目交付 · MES实施 · AI财税平台运营">
+  <meta property="og:description" content="4年企业信息化项目交付与软件实施经验，覆盖 MES 实施、SaaS/AI 平台运营、系统部署与跨团队协调。">
+  <meta name="theme-color" content="#f5f5f7">
+  <style>
+/* ============ Design Tokens ============ */
+:root {
+  /* color */
+  --bg: #f5f5f7;
+  --bg-soft: #fafafa;
+  --surface: rgba(255, 255, 255, 0.78);
+  --surface-solid: #ffffff;
+  --ink: #1d1d1f;
+  --muted: #6e6e73;
+  --faint: #86868b;
+  --accent: #0071e3;
+  --accent-ink: #0066cc;
+  --hairline: rgba(0, 0, 0, 0.07);
+  --hairline-strong: rgba(0, 0, 0, 0.12);
+  --glow-blue: rgba(0, 113, 227, 0.10);
+  --glow-violet: rgba(120, 130, 240, 0.10);
+  --glow-ice: rgba(150, 205, 255, 0.14);
+
+  /* type */
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text",
+          "PingFang SC", "Helvetica Neue", "Microsoft YaHei", sans-serif;
+  --t-display: clamp(56px, 7.2vw, 80px);
+  --t-h2: clamp(30px, 3.6vw, 42px);
+  --t-h3: clamp(20px, 2.2vw, 26px);
+  --t-body: 17px;
+  --t-small: 15px;
+  --t-micro: 13px;
+
+  /* space & shape */
+  --nav-h: 56px;
+  --section-py: clamp(88px, 12vw, 140px);
+  --radius-l: 24px;
+  --radius-m: 18px;
+  --radius-s: 12px;
+  --shadow-s: 0 1px 2px rgba(0,0,0,.04), 0 4px 16px rgba(0,0,0,.04);
+  --shadow-m: 0 2px 6px rgba(0,0,0,.045), 0 16px 40px rgba(0,0,0,.07);
+  --ease: cubic-bezier(.22,.61,.26,1);
+}
+
+/* ============ Base ============ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font);
+  font-size: var(--t-body);
+  line-height: 1.66;
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+img, svg { display: block; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+
+::selection { background: rgba(0, 113, 227, 0.16); }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.container {
+  width: min(1120px, calc(100% - 48px));
+  margin-inline: auto;
+}
+
+/* Section scaffolding */
+.section { padding-block: var(--section-py); position: relative; }
+.section + .section { border-top: 1px solid var(--hairline); }
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: var(--t-micro);
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+.eyebrow::before {
+  content: "";
+  width: 22px; height: 1px;
+  background: currentColor;
+  opacity: .55;
+}
+
+.section-title {
+  font-size: var(--t-h2);
+  font-weight: 700;
+  letter-spacing: -.022em;
+  line-height: 1.18;
+}
+.section-title .en {
+  display: block;
+  margin-top: 8px;
+  font-size: clamp(14px, 1.3vw, 16px);
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+.section-head { margin-bottom: clamp(44px, 5vw, 64px); }
+
+/* Scroll reveal (JS adds .in) */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .8s var(--ease), transform .8s var(--ease);
+  transition-delay: calc(var(--d, 0) * 90ms);
+  will-change: opacity, transform;
+}
+.reveal.in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  * { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+  </style>
+  <style>
+/* ============ Fixed navigation ============ */
+.nav {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 100;
+  height: var(--nav-h);
+  display: flex;
+  align-items: center;
+  transition: background-color .45s var(--ease), box-shadow .45s var(--ease),
+              border-color .45s var(--ease), backdrop-filter .45s var(--ease);
+  border-bottom: 1px solid transparent;
+}
+.nav.is-scrolled {
+  background: rgba(245, 245, 247, 0.72);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+  border-bottom-color: var(--hairline);
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.nav-brand {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -.01em;
+  white-space: nowrap;
+}
+.nav-brand span { color: var(--muted); font-weight: 400; margin-left: 8px; }
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.nav-links a {
+  font-size: 13.5px;
+  color: var(--muted);
+  padding: 7px 13px;
+  border-radius: 999px;
+  transition: color .25s, background-color .25s;
+  white-space: nowrap;
+}
+.nav-links a:hover { color: var(--ink); background: rgba(0,0,0,.045); }
+.nav-links a.active { color: var(--accent-ink); background: rgba(0,113,227,.09); font-weight: 600; }
+
+/* Mobile menu */
+.nav-toggle {
+  display: none;
+  width: 40px; height: 40px;
+  border: 0; background: transparent;
+  cursor: pointer;
+  border-radius: 10px;
+  position: relative;
+}
+.nav-toggle::before, .nav-toggle::after {
+  content: "";
+  position: absolute;
+  left: 11px; right: 11px;
+  height: 1.5px;
+  background: var(--ink);
+  border-radius: 2px;
+  transition: transform .3s var(--ease), top .3s var(--ease);
+}
+.nav-toggle::before { top: 17px; }
+.nav-toggle::after  { top: 23px; }
+.nav-open .nav-toggle::before { top: 20px; transform: rotate(45deg); }
+.nav-open .nav-toggle::after  { top: 20px; transform: rotate(-45deg); }
+
+/* ============ Hero ============ */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding: calc(var(--nav-h) + 48px) 0 96px;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, #fbfbfd 0%, var(--bg) 62%, #f1f2f5 100%);
+}
+/* faint dot matrix, masked toward bottom */
+.hero::before {
+  content: "";
+  position: absolute; inset: 0;
+  background-image: radial-gradient(rgba(29,29,31,.055) 1px, transparent 1.2px);
+  background-size: 26px 26px;
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 34%, #000 68%, transparent 100%);
+          mask-image: linear-gradient(180deg, transparent 0%, #000 34%, #000 68%, transparent 100%);
+  pointer-events: none;
+}
+/* restrained ambient glows, slowly drifting */
+.glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+  will-change: transform;
+}
+.glow-a {
+  width: 560px; height: 560px;
+  background: radial-gradient(circle at 40% 40%, var(--glow-ice), transparent 68%);
+  top: -140px; right: -120px;
+  animation: drift-a 26s ease-in-out infinite alternate;
+}
+.glow-b {
+  width: 480px; height: 480px;
+  background: radial-gradient(circle at 55% 45%, var(--glow-violet), transparent 66%);
+  bottom: -200px; left: -140px;
+  animation: drift-b 32s ease-in-out infinite alternate;
+}
+@keyframes drift-a { to { transform: translate3d(-46px, 60px, 0); } }
+@keyframes drift-b { to { transform: translate3d(58px, -44px, 0); } }
+
+.hero-inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.08fr .92fr;
+  align-items: center;
+  gap: clamp(40px, 6vw, 88px);
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: var(--t-micro);
+  font-weight: 500;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 22px;
+}
+.hero-eyebrow::before {
+  content: "";
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px rgba(0,113,227,.14);
+}
+.hero-name {
+  font-size: var(--t-display);
+  font-weight: 700;
+  letter-spacing: -.035em;
+  line-height: 1.05;
+}
+.hero-role {
+  margin-top: 18px;
+  font-size: clamp(17px, 1.6vw, 21px);
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: .01em;
+  line-height: 1.55;
+  text-wrap: balance;
+}
+.hero-role strong { color: var(--ink); font-weight: 600; }
+.hero-rule {
+  margin: 28px 0 22px;
+  width: 100%;
+  max-width: 420px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--hairline-strong), transparent);
+}
+.hero-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 14px;
+  align-items: center;
+}
+.hero-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--t-small);
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-radius: 999px;
+  padding: 9px 17px;
+  box-shadow: var(--shadow-s);
+  transition: transform .35s var(--ease), box-shadow .35s var(--ease);
+}
+a.hero-chip:hover { transform: translateY(-2px); box-shadow: var(--shadow-m); }
+.hero-chip svg { width: 15px; height: 15px; stroke: var(--accent); }
+.hero-chip.year { font-weight: 600; }
+.hero-chip .num { color: var(--accent); font-weight: 600; font-variant-numeric: tabular-nums; }
+
+/* ---- Hero signature visual: career trajectory ---- */
+.hero-visual { position: relative; }
+.track {
+  position: relative;
+  aspect-ratio: 1 / 0.92;
+  max-width: 480px;
+  margin-inline: auto;
+}
+.track-ring {
+  position: absolute; inset: 6% 8%;
+  border-radius: 50%;
+  border: 1px solid var(--hairline);
+  background: radial-gradient(circle at 50% 46%, rgba(255,255,255,.9), rgba(245,246,250,.5) 62%, transparent 74%);
+  box-shadow: inset 0 0 60px rgba(0,113,227,.045);
+}
+.track-ring::after {
+  content: "";
+  position: absolute; inset: 16%;
+  border-radius: 50%;
+  border: 1px dashed rgba(0,0,0,.08);
+}
+.track-svg {
+  position: absolute;
+  left: 8%; top: 6%;
+  width: 84%; height: 88%;
+  overflow: visible;
+}
+.track-path {
+  fill: none;
+  stroke: #b9c4d6;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-dasharray: 5 7;
+  opacity: .7;
+}
+.track-solid {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  animation: trace 2.6s var(--ease) .7s forwards;
+}
+@keyframes trace { to { stroke-dashoffset: 0; } }
+.track-dot { fill: var(--accent); }
+.track-halo { fill: rgba(0,113,227,.12); }
+.node {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: grid;
+  gap: 2px;
+  padding: 12px 16px;
+  border-radius: var(--radius-s);
+  background: var(--surface);
+  border: 1px solid var(--hairline);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  box-shadow: var(--shadow-m);
+  opacity: 0;
+  animation: node-in .9s var(--ease) forwards;
+}
+.node b { font-size: 17px; font-weight: 600; letter-spacing: -.01em; white-space: nowrap; }
+.node i {
+  font-style: normal;
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: .02em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.node-1 { left: 30%; top: 88%; animation-delay: 1.5s; }
+.node-2 { left: 52%; top: 70%; animation-delay: 1.9s; }
+.node-3 { left: 69%; top: 17.5%; animation-delay: 2.3s; }
+@keyframes node-in {
+  from { opacity: 0; transform: translate(-50%, -42%); }
+  to   { opacity: 1; transform: translate(-50%, -50%); }
+}
+.track-caption {
+  position: absolute;
+  left: 50%;
+  bottom: -6px;
+  transform: translateX(-50%);
+  font-size: 12px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--faint);
+  white-space: nowrap;
+}
+
+/* scroll cue */
+.scroll-cue {
+  position: absolute;
+  left: 50%;
+  bottom: 30px;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+  font-size: 11.5px;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: var(--faint);
+}
+.scroll-cue::after {
+  content: "";
+  width: 1px; height: 34px;
+  background: linear-gradient(var(--faint), transparent);
+  animation: cue 2.4s var(--ease) infinite;
+}
+@keyframes cue {
+  0% { transform: scaleY(.2); transform-origin: top; opacity: 0; }
+  35% { opacity: 1; }
+  100% { transform: scaleY(1); transform-origin: top; opacity: 0; }
+}
+  </style>
+  <style>
+/* ============ Profile / 个人优势 ============ */
+.profile { background: var(--bg); }
+.profile-lead {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(14px, 2.4vw, 30px);
+  flex-wrap: wrap;
+  font-size: clamp(17px, 1.9vw, 24px);
+  font-weight: 600;
+  letter-spacing: .01em;
+  color: var(--ink);
+  padding: clamp(30px, 4vw, 44px) clamp(20px, 4vw, 48px);
+  background: var(--surface-solid);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-l);
+  box-shadow: var(--shadow-s);
+  text-align: center;
+  margin-bottom: 22px;
+}
+.profile-lead .sep {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: .5;
+  flex: none;
+}
+.profile-lead .en-word { letter-spacing: .01em; }
+
+.profile-copy {
+  max-width: 860px;
+  margin: 0 auto 52px;
+  text-align: center;
+  color: var(--muted);
+  font-size: clamp(15px, 1.5vw, 17px);
+  line-height: 1.9;
+}
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.pcard {
+  background: var(--surface-solid);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-m);
+  padding: 32px 30px 28px;
+  box-shadow: var(--shadow-s);
+  transition: transform .4s var(--ease), box-shadow .4s var(--ease);
+}
+.pcard:hover { transform: translateY(-5px); box-shadow: var(--shadow-m); }
+.pcard .idx {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .16em;
+  color: var(--faint);
+  font-variant-numeric: tabular-nums;
+}
+.pcard h3 {
+  margin: 12px 0 4px;
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: -.015em;
+}
+.pcard .sub {
+  font-size: 12.5px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 18px;
+}
+.pcard ul { display: grid; gap: 8px; }
+.pcard li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: var(--t-small);
+  color: var(--muted);
+}
+.pcard li::before {
+  content: "";
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--hairline-strong);
+  flex: none;
+}
+
+/* ============ Experience / 工作经历 ============ */
+.experience { background: linear-gradient(180deg, #f0f1f4 0%, var(--bg) 100%); }
+.timeline {
+  position: relative;
+  padding-left: clamp(0px, 0px, 0px);
+  display: grid;
+  gap: 32px;
+}
+/* vertical rail */
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 132px;
+  top: 14px; bottom: 14px;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, var(--hairline-strong) 8%, var(--hairline-strong) 92%, transparent);
+}
+.tl-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 114px 36px 1fr;
+  align-items: start;
+}
+.tl-date {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  letter-spacing: .02em;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  padding-top: 30px;
+  white-space: nowrap;
+}
+.tl-dot {
+  position: relative;
+  justify-self: center;
+  width: 11px; height: 11px;
+  margin-top: 36px;
+  border-radius: 50%;
+  background: var(--surface-solid);
+  border: 2px solid var(--accent);
+  box-shadow: 0 0 0 5px rgba(0,113,227,.08);
+  z-index: 1;
+}
+.tl-dot::after {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0;
+  transition: opacity .3s;
+}
+.tl-item:hover .tl-dot::after { opacity: 1; }
+
+.xcard {
+  background: var(--surface-solid);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-l);
+  padding: clamp(26px, 3vw, 38px);
+  box-shadow: var(--shadow-s);
+  transition: transform .4s var(--ease), box-shadow .4s var(--ease);
+}
+.xcard:hover { transform: translateY(-4px); box-shadow: var(--shadow-m); }
+.xcard-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 16px;
+  margin-bottom: 6px;
+}
+.xcard-head h3 {
+  font-size: var(--t-h3);
+  font-weight: 700;
+  letter-spacing: -.018em;
+}
+.x-role {
+  font-size: var(--t-small);
+  color: var(--accent-ink);
+  font-weight: 600;
+}
+.x-dur {
+  margin-left: auto;
+  font-size: 12.5px;
+  color: var(--faint);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: .03em;
+}
+.tag {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .05em;
+  color: var(--muted);
+  background: var(--bg);
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  padding: 4px 12px;
+}
+.xcard .tags { margin: 10px 0 4px; display: flex; flex-wrap: wrap; gap: 8px; }
+.xlist { margin-top: 16px; display: grid; gap: 13px; }
+.xlist li {
+  position: relative;
+  padding-left: 20px;
+  font-size: var(--t-small);
+  color: var(--muted);
+  line-height: 1.8;
+}
+.xlist li::before {
+  content: "";
+  position: absolute;
+  left: 2px; top: .82em;
+  width: 7px; height: 7px;
+  border-radius: 2px;
+  background: linear-gradient(135deg, var(--accent), #5aa9ff);
+  opacity: .35;
+}
+.xlist b, .kpi b { color: var(--ink); font-weight: 600; }
+.em { color: var(--accent-ink); font-weight: 600; font-style: normal; }
+.kpis {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+  padding-top: 20px;
+  border-top: 1px solid var(--hairline);
+}
+.kpi {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 7px;
+  font-size: 12.5px;
+  color: var(--muted);
+  background: var(--bg-soft);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-s);
+  padding: 8px 14px;
+}
+.kpi b {
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -.02em;
+  font-variant-numeric: tabular-nums;
+}
+.kpi b i { font-style: normal; color: var(--accent); }
+
+/* ============ Projects / 项目经历 ============ */
+.projects { background: var(--bg); }
+.proj-grid { display: grid; gap: 36px; }
+.proj {
+  background: var(--surface-solid);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-l);
+  overflow: hidden;
+  box-shadow: var(--shadow-s);
+  transition: transform .4s var(--ease), box-shadow .4s var(--ease);
+}
+.proj:hover { transform: translateY(-5px); box-shadow: var(--shadow-m); }
+.proj-top {
+  position: relative;
+  padding: clamp(30px, 3.4vw, 44px) clamp(26px, 3.4vw, 46px) clamp(22px, 2.4vw, 30px);
+  background:
+    radial-gradient(120% 160% at 88% -40%, rgba(0,113,227,.07), transparent 52%),
+    linear-gradient(180deg, #fbfbfd, #fff);
+  border-bottom: 1px solid var(--hairline);
+}
+.proj-no {
+  position: absolute;
+  top: clamp(24px, 3vw, 38px);
+  right: clamp(24px, 3vw, 44px);
+  font-size: clamp(44px, 5.4vw, 66px);
+  font-weight: 700;
+  letter-spacing: -.04em;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(0,0,0,.10);
+  font-variant-numeric: tabular-nums;
+  user-select: none;
+}
+.proj-top h3 {
+  font-size: clamp(22px, 2.5vw, 30px);
+  font-weight: 700;
+  letter-spacing: -.022em;
+  line-height: 1.3;
+  max-width: 80%;
+}
+.proj-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  margin-top: 14px;
+  font-size: 13.5px;
+  color: var(--muted);
+}
+.proj-meta .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--hairline-strong); }
+.proj-meta .role { color: var(--accent-ink); font-weight: 600; }
+.proj-tags { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 8px; }
+.proj-body { padding: clamp(26px, 3vw, 40px) clamp(26px, 3.4vw, 46px) clamp(30px, 3.4vw, 44px); }
+.pblock { margin-bottom: 30px; }
+.pblock:last-child { margin-bottom: 0; }
+.pblock-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+.pblock-label::before {
+  content: "";
+  width: 8px; height: 8px;
+  border-radius: 3px;
+  background: linear-gradient(135deg, var(--accent), #6db3ff);
+}
+.pblock p { color: var(--muted); font-size: var(--t-small); line-height: 1.85; }
+.proj-out {
+  display: flex;
+  gap: 14px;
+  background: linear-gradient(180deg, #f7f9fc, #f3f6fb);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-m);
+  padding: 20px 22px;
+}
+.proj-out svg { width: 20px; height: 20px; stroke: var(--accent); flex: none; margin-top: 3px; }
+.proj-out p { font-size: var(--t-small); color: var(--ink); line-height: 1.85; }
+
+/* module mini cards (Project 01) */
+.modules {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 18px;
+}
+.module {
+  text-align: center;
+  padding: 16px 8px 14px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-s);
+  background: var(--bg-soft);
+  transition: border-color .3s, background-color .3s, transform .3s var(--ease);
+}
+.module:hover { border-color: rgba(0,113,227,.35); background: #fff; transform: translateY(-3px); }
+.module svg { width: 20px; height: 20px; stroke: var(--accent); margin: 0 auto 8px; }
+.module b { display: block; font-size: 14px; font-weight: 600; }
+.module i { font-style: normal; font-size: 11px; color: var(--faint); letter-spacing: .06em; }
+
+/* project stat chips */
+.pstats { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.pstat {
+  font-size: 12.5px;
+  color: var(--muted);
+  border: 1px solid var(--hairline);
+  background: var(--bg-soft);
+  border-radius: 999px;
+  padding: 7px 14px;
+}
+.pstat b { color: var(--ink); font-weight: 700; font-variant-numeric: tabular-nums; margin-right: 4px; }
+.pstat b i { font-style: normal; color: var(--accent); }
+
+/* ============ Skills / 专业技能 ============ */
+.skills { background: linear-gradient(180deg, #f0f1f4 0%, var(--bg) 100%); }
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.scard {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface-solid);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-m);
+  padding: 30px 26px 28px;
+  box-shadow: var(--shadow-s);
+  transition: transform .4s var(--ease), box-shadow .4s var(--ease);
+}
+.scard:hover { transform: translateY(-5px); box-shadow: var(--shadow-m); }
+.scard .s-ico {
+  width: 46px; height: 46px;
+  display: grid;
+  place-items: center;
+  border-radius: 13px;
+  background: linear-gradient(160deg, rgba(0,113,227,.09), rgba(0,113,227,.03));
+  border: 1px solid rgba(0,113,227,.14);
+  margin-bottom: 20px;
+}
+.scard .s-ico svg { width: 22px; height: 22px; stroke: var(--accent); }
+.scard h3 {
+  font-size: 17.5px;
+  font-weight: 700;
+  letter-spacing: -.012em;
+  margin-bottom: 5px;
+}
+.scard .s-en {
+  font-size: 11.5px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin-bottom: 14px;
+}
+.scard p { font-size: 14px; color: var(--muted); line-height: 1.8; }
+.scard p b { color: var(--ink); font-weight: 600; }
+
+/* ============ Education / 教育经历 ============ */
+.edu-card {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: clamp(18px, 3vw, 36px);
+  background: var(--surface-solid);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-l);
+  padding: clamp(30px, 3.6vw, 44px) clamp(26px, 3.6vw, 48px);
+  box-shadow: var(--shadow-s);
+}
+.edu-mark {
+  width: 58px; height: 58px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  background: linear-gradient(160deg, #1d1d1f, #3a3a3f);
+}
+.edu-mark svg { width: 27px; height: 27px; stroke: #fff; }
+.edu-card h3 { font-size: clamp(19px, 2vw, 23px); font-weight: 700; letter-spacing: -.015em; }
+.edu-card .edu-sub { font-size: var(--t-small); color: var(--muted); margin-top: 3px; }
+.edu-date {
+  font-size: 13.5px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: .03em;
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  padding: 8px 16px;
+  white-space: nowrap;
+}
+
+/* ============ Contact footer ============ */
+.footer {
+  position: relative;
+  border-top: 1px solid var(--hairline);
+  padding: clamp(84px, 11vw, 128px) 0 44px;
+  background:
+    radial-gradient(90% 130% at 50% 0%, rgba(0,113,227,.055), transparent 55%),
+    linear-gradient(180deg, #fbfbfd, #f2f3f6);
+  text-align: center;
+  overflow: hidden;
+}
+.footer-cta {
+  font-size: var(--t-micro);
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 18px;
+}
+.footer h2 {
+  font-size: clamp(34px, 4.6vw, 54px);
+  font-weight: 700;
+  letter-spacing: -.03em;
+  line-height: 1.15;
+}
+.footer .f-role { margin-top: 12px; font-size: var(--t-small); color: var(--muted); }
+.f-links {
+  margin-top: 38px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+.f-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink);
+  background: var(--surface-solid);
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  padding: 13px 24px;
+  box-shadow: var(--shadow-s);
+  transition: transform .35s var(--ease), box-shadow .35s var(--ease), color .35s;
+}
+.f-link:hover { transform: translateY(-3px); box-shadow: var(--shadow-m); color: var(--accent-ink); }
+.f-link.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.f-link.primary:hover { background: #0077ed; color: #fff; }
+.f-link svg { width: 16px; height: 16px; stroke: currentColor; }
+/* GitHub mark (filled icon) */
+.hero-chip svg.g-mark { stroke: none; fill: var(--accent); }
+.f-link svg.g-mark { stroke: none; fill: currentColor; }
+.f-bottom {
+  margin-top: clamp(64px, 9vw, 96px);
+  padding-top: 26px;
+  border-top: 1px solid var(--hairline);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  font-size: 12.5px;
+  color: var(--faint);
+}
+.f-bottom .to-top { color: var(--muted); transition: color .25s; }
+.f-bottom .to-top:hover { color: var(--accent); }
+  </style>
+  <style>
+/* ============ Responsive ============ */
+@media (max-width: 1080px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 56px; }
+  .hero-visual { order: 2; }
+  .track { max-width: 420px; }
+  .skills-grid { grid-template-columns: repeat(2, 1fr); }
+  .proj-top h3 { max-width: 78%; }
+}
+
+@media (max-width: 860px) {
+  :root { --section-py: 84px; }
+  .container { width: calc(100% - 40px); }
+
+  /* nav -> slide-down sheet */
+  .nav-links {
+    position: fixed;
+    top: var(--nav-h);
+    left: 0; right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
+    padding: 18px 20px 22px;
+    background: rgba(247, 247, 249, .97);
+    -webkit-backdrop-filter: saturate(180%) blur(24px);
+    backdrop-filter: saturate(180%) blur(24px);
+    border-bottom: 1px solid var(--hairline);
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: opacity .3s var(--ease), transform .3s var(--ease);
+  }
+  .nav-open .nav-links { opacity: 1; transform: none; pointer-events: auto; }
+  .nav-links a { font-size: 15px; padding: 13px 14px; border-radius: 12px; }
+  .nav-toggle { display: block; }
+  .nav.is-scrolled, .nav-open .nav {
+    background: rgba(245, 245, 247, .86);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
+    border-bottom-color: var(--hairline);
+  }
+
+  /* hero */
+  .hero { min-height: auto; padding-top: calc(var(--nav-h) + 60px); padding-bottom: 96px; }
+  .scroll-cue { display: none; }
+  .track { aspect-ratio: 1 / .9; max-width: 360px; }
+  .node { padding: 9px 12px; }
+  .node b { font-size: 14px; }
+  .node i { font-size: 11px; }
+
+  /* profile */
+  .profile-grid { grid-template-columns: 1fr; }
+
+  /* timeline -> single column, date moves into card */
+  .timeline::before { display: none; }
+  .tl-item { grid-template-columns: 22px 1fr; }
+  .tl-date { display: none; }
+  .tl-dot { margin-top: 30px; align-self: stretch; justify-self: start; }
+  .x-dur { margin-left: 0; width: 100%; order: 3; }
+  .xcard-head h3 { font-size: 19px; }
+
+  /* projects */
+  .proj-no { font-size: 40px; top: 20px; right: 20px; }
+  .proj-top h3 { max-width: calc(100% - 70px); }
+  .modules { grid-template-columns: repeat(2, 1fr); }
+
+  /* education */
+  .edu-card { grid-template-columns: auto 1fr; }
+  .edu-date { grid-column: 2; justify-self: start; }
+
+  .f-bottom { flex-direction: column; }
+}
+
+@media (max-width: 560px) {
+  :root { --t-body: 16px; }
+  .hero-name { font-size: clamp(48px, 14vw, 62px); }
+  .hero-facts {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .hero-chip { max-width: 100%; }
+  .hero-chip svg { flex: none; }
+  .profile-lead { font-size: 17px; padding: 26px 20px; }
+  .xlist li { font-size: 14.5px; }
+  .kpis { gap: 8px; }
+  .kpi b { font-size: 17px; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .xcard-head h3 { font-size: 18px; }
+  .f-links { flex-direction: column; align-items: stretch; }
+  .f-link { justify-content: center; }
+}
+  </style>
+</head>
+<body>
+  <!-- ===== Fixed navigation ===== -->
+  <header class="nav" id="nav">
+    <div class="container nav-inner">
+      <a class="nav-brand" href="#top">栾明昊<span>Luan Minghao</span></a>
+      <nav class="nav-links" id="navLinks" aria-label="主导航">
+        <a href="#top" class="active">首页</a>
+        <a href="#experience">工作经历</a>
+        <a href="#projects">项目经历</a>
+        <a href="#skills">专业技能</a>
+        <a href="#education">教育经历</a>
+      </nav>
+      <button class="nav-toggle" id="navToggle" aria-label="打开菜单" aria-expanded="false"></button>
+    </div>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero" id="top">
+    <div class="glow glow-a" aria-hidden="true"></div>
+    <div class="glow glow-b" aria-hidden="true"></div>
+
+    <div class="container hero-inner">
+      <div class="hero-copy">
+        <p class="hero-eyebrow">Open to opportunities · 企业数字化</p>
+        <h1 class="hero-name">栾明昊</h1>
+        <p class="hero-role">
+          <strong>企业信息化项目交付</strong> · <strong>MES软件实施</strong> · <strong>AI财税平台运营</strong>
+        </p>
+        <div class="hero-rule" role="presentation"></div>
+        <div class="hero-facts">
+          <span class="hero-chip year">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
+            <span class="num">4</span>&nbsp;年工作经验
+          </span>
+          <a class="hero-chip" href="https://github.com/blue-lmh" target="_blank" rel="noopener noreferrer">
+            <svg class="g-mark" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.05-.13-.36-1.04.08-2.18 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.14.13 2.05.08 2.18.51.55.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.94-.01 2.21 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+            github.com/blue-lmh
+          </a>
+          <a class="hero-chip" href="mailto:1423573075@qq.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            1423573075@qq.com
+          </a>
+        </div>
+      </div>
+
+      <!-- Signature visual: real career trajectory 2022 → 2026 -->
+      <div class="hero-visual" aria-hidden="true">
+        <div class="track">
+          <div class="track-ring"></div>
+          <svg class="track-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <path class="track-path" d="M 24 74 C 33 70, 44 61, 52 53 S 68 39, 76 31"/>
+            <path class="track-solid" pathLength="200" d="M 24 74 C 33 70, 44 61, 52 53 S 68 39, 76 31"/>
+            <circle class="track-halo" cx="24" cy="74" r="5"/>
+            <circle class="track-halo" cx="52" cy="53" r="5"/>
+            <circle class="track-halo" cx="76" cy="31" r="5"/>
+            <circle class="track-dot" cx="24" cy="74" r="2.4"/>
+            <circle class="track-dot" cx="52" cy="53" r="2.4"/>
+            <circle class="track-dot" cx="76" cy="31" r="2.4"/>
+          </svg>
+          <div class="node node-1"><b>项目交付</b><i>2022 · 苏州科达</i></div>
+          <div class="node node-2"><b>MES实施</b><i>2025 · 两颗数科技</i></div>
+          <div class="node node-3"><b>AI平台运营</b><i>2026 · 杭州微风企</i></div>
+          <span class="track-caption">Career Trajectory · 2022 – 2026</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-cue" aria-hidden="true">Scroll to explore</div>
+  </section>
+  <main>
+    <!-- ===== 01 Profile / 个人优势 ===== -->
+    <section class="section profile" id="profile">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="eyebrow">Career Profile</p>
+          <h2 class="section-title">个人优势<span class="en">What I Bring</span></h2>
+        </header>
+
+        <p class="profile-lead reveal">
+          <span class="en-word">Enterprise Delivery</span>
+          <span class="sep" aria-hidden="true"></span>
+          <span class="en-word">MES Implementation</span>
+          <span class="sep" aria-hidden="true"></span>
+          <span class="en-word">AI SaaS Operations</span>
+        </p>
+
+        <p class="profile-copy reveal">具备企业信息化项目交付、MES软件实施及AI财税企业服务平台运营经验，工作经历覆盖需求沟通、系统部署、测试上线、客户支持及平台运营等环节。具备较好的客户沟通与跨部门协调能力，能够连接客户、业务、产品及技术团队推进需求落地和问题解决；同时具备一定AI工具应用实践。</p>
+
+        <div class="profile-grid">
+          <article class="pcard reveal" style="--d:0">
+            <p class="idx">01 · DELIVERY</p>
+            <h3>项目交付</h3>
+            <p class="sub">Project Delivery</p>
+            <ul>
+              <li>需求沟通</li>
+              <li>系统部署</li>
+              <li>测试上线</li>
+              <li>客户支持</li>
+            </ul>
+          </article>
+          <article class="pcard reveal" style="--d:1">
+            <p class="idx">02 · MES</p>
+            <h3>MES实施</h3>
+            <p class="sub">MES Implementation</p>
+            <ul>
+              <li>生产管理</li>
+              <li>仓储管理</li>
+              <li>设备管理</li>
+              <li>化验业务</li>
+            </ul>
+          </article>
+          <article class="pcard reveal" style="--d:2">
+            <p class="idx">03 · AI SAAS</p>
+            <h3>AI平台运营</h3>
+            <p class="sub">AI SaaS Operations</p>
+            <ul>
+              <li>SaaS运营</li>
+              <li>工单处理</li>
+              <li>数据核对</li>
+              <li>跨部门协调</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- ===== 02 Experience / 工作经历 ===== -->
+    <section class="section experience" id="experience">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="eyebrow">Experience</p>
+          <h2 class="section-title">工作经历<span class="en">Where I Have Delivered</span></h2>
+        </header>
+
+        <div class="timeline">
+          <!-- 经历 01 -->
+          <article class="tl-item reveal">
+            <div class="tl-date">2026.04 — 2026.10</div>
+            <span class="tl-dot" aria-hidden="true"></span>
+            <div class="xcard">
+              <div class="xcard-head">
+                <h3>杭州微风企科技有限公司</h3>
+                <span class="x-role">AI财税平台运营</span>
+                <span class="x-dur">2026.04 – 2026.10</span>
+              </div>
+              <div class="tags">
+                <span class="tag">SaaS 运营</span>
+                <span class="tag">RPA + AI</span>
+                <span class="tag">客户支持</span>
+              </div>
+              <ul class="xlist">
+                <li>负责企业SaaS产品日常运营及客户支持，跟进小程序、后台管理系统及<b>API接入</b>等使用场景，完成账号开通、授权配置、操作培训、接口文档说明及客户问题跟进；<b>月均跟进<em class="em">100+</em>条平台流入需求</b>。</li>
+                <li>负责WBIT AI财税平台运营支持，跟进<b>RPA+AI企业数据采集</b>及税务风险、融资等报告生成场景，核对客户报告数据、处理平台工单，并协调产品、技术团队推进功能优化及定制需求；<b>个人月均处理<em class="em">10+</em>项有效服务订单/需求</b>。</li>
+                <li>负责企业客户与全国专家资源匹配，协调客户、专家、商务及内部团队完成线上咨询、线下入企等服务安排，并跟进方案报价及后续增值服务，推动客户需求从<b>下单 — 专家匹配 — 服务交付 — 反馈跟进</b>形成闭环。</li>
+              </ul>
+              <div class="kpis">
+                <span class="kpi"><b>100<i>+</i></b> 条 / 月均平台流入需求</span>
+                <span class="kpi"><b>10<i>+</i></b> 项 / 月均有效服务订单</span>
+                <span class="kpi"><b>服务闭环</b> 下单到反馈全链路跟进</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 经历 02 -->
+          <article class="tl-item reveal">
+            <div class="tl-date">2025.08 — 2026.02</div>
+            <span class="tl-dot" aria-hidden="true"></span>
+            <div class="xcard">
+              <div class="xcard-head">
+                <h3>两颗数科技有限公司</h3>
+                <span class="x-role">软件实施顾问（MES）</span>
+                <span class="x-dur">2025.08 – 2026.02</span>
+              </div>
+              <div class="tags">
+                <span class="tag">MES Implementation</span>
+              </div>
+              <ul class="xlist">
+                <li>参与MES系统实施项目，协助客户完成<b>需求沟通、系统配置、功能测试及上线支持</b>工作。</li>
+                <li>根据客户业务需求，配合项目团队进行<b>系统功能验证、问题记录</b>及实施过程跟进。</li>
+                <li>协调客户、项目经理及技术团队推进实施问题处理，保障<b>项目阶段性交付目标</b>完成。</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- 经历 03 -->
+          <article class="tl-item reveal">
+            <div class="tl-date">2022.07 — 2025.07</div>
+            <span class="tl-dot" aria-hidden="true"></span>
+            <div class="xcard">
+              <div class="xcard-head">
+                <h3>苏州科达科技股份有限公司</h3>
+                <span class="x-role">项目交付工程师</span>
+                <span class="x-dur">2022.07 – 2025.07</span>
+              </div>
+              <div class="tags">
+                <span class="tag">项目交付</span>
+                <span class="tag">跨团队协调</span>
+                <span class="tag">现场驻场支持</span>
+              </div>
+              <ul class="xlist">
+                <li>前期主要负责客户现场驻场支持，处理系统、设备及日常运行问题，保障客户现场业务稳定运行；后期转为<b>项目交付支持</b>，参与多项目现场实施。</li>
+                <li>根据项目需求开展<b>系统部署、设备调试、联调测试及上线支持</b>，覆盖温州13个区县及丽水、台州等区域，根据项目安排高频往返不同客户现场。</li>
+                <li>对接客户业务人员、公安民警及管理人员，同时协调<b>研发、产品、售前、销售、合作商</b>等多方资源推进项目实施，参与需求沟通、用户培训、上线支持及问题跟进。</li>
+              </ul>
+              <div class="kpis">
+                <span class="kpi"><b>3<i>年</i></b> 一线交付与技术支持经验</span>
+                <span class="kpi"><b>13<i>个区县</i></b> 覆盖温州及丽水、台州等区域</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- ===== 03 Projects / 项目经历 ===== -->
+    <section class="section projects" id="projects">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="eyebrow">Selected Projects</p>
+          <h2 class="section-title">项目经历<span class="en">Delivery in Practice</span></h2>
+        </header>
+
+        <div class="proj-grid">
+          <!-- Project 01 -->
+          <article class="proj reveal">
+            <div class="proj-top">
+              <span class="proj-no">01</span>
+              <h3>某新材料企业MES系统实施项目</h3>
+              <div class="proj-meta">
+                <span>2025.09 – 2026.02</span>
+                <span class="dot" aria-hidden="true"></span>
+                <span class="role">MES系统实施</span>
+              </div>
+              <div class="proj-tags">
+                <span class="tag">MES</span>
+                <span class="tag">Production</span>
+                <span class="tag">WMS</span>
+                <span class="tag">ERP Integration</span>
+              </div>
+            </div>
+            <div class="proj-body">
+              <div class="pblock">
+                <p class="pblock-label">项目背景</p>
+                <p>为某新材料企业实施MES生产管理系统，企业主要从事有机颜料/水性色浆相关生产，系统覆盖生产、化验、设备、仓储四类核心业务模块，并与企业现有ERP等系统进行业务数据衔接。</p>
+                <div class="modules" aria-label="四个核心业务模块">
+                  <div class="module">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M19.1 4.9 17 7M7 17l-2.1 2.1"/></svg>
+                    <b>生产</b><i>Production</i>
+                  </div>
+                  <div class="module">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 2v7.5a2 2 0 0 1-.2.9L4.7 20.6a1 1 0 0 0 .9 1.4h12.8a1 1 0 0 0 .9-1.4L14.2 10.4a2 2 0 0 1-.2-.9V2"/><path d="M8.5 2h7"/><path d="M7 16h10"/></svg>
+                    <b>化验</b><i>Lab Testing</i>
+                  </div>
+                  <div class="module">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.7-3.7a6 6 0 0 1-7.9 7.9l-6.9 6.9a2.1 2.1 0 0 1-3-3l6.9-6.9a6 6 0 0 1 7.9-7.9l-3.7 3.7z"/></svg>
+                    <b>设备</b><i>Equipment</i>
+                  </div>
+                  <div class="module">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 21.7a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7z"/><path d="M12 22V12"/><path d="m3.3 7 8.7 5 8.7-5"/></svg>
+                    <b>仓储</b><i>WMS</i>
+                  </div>
+                </div>
+              </div>
+
+              <div class="pblock">
+                <p class="pblock-label">负责工作</p>
+                <ul class="xlist">
+                  <li>参与<b>客户需求调研及业务流程梳理</b>，与生产、仓储、化验、设备及相关职能部门开展需求沟通，结合实际生产场景确认系统功能及业务流程。</li>
+                  <li>负责MES系统实施支持，包括<b>系统部署、功能配置、业务流程验证、测试及上线问题跟进</b>，重点参与生产管理及仓储管理（WMS）模块实施。</li>
+                  <li>深入生产车间了解实际业务场景，针对<b>生产流程、反应釜操作、化验结果及业务数据记录</b>等特殊需求，与客户共同确认定制化功能方案并推进落地。</li>
+                  <li>配合客户完成<b>系统培训、上线及后续维护</b>，持续收集使用反馈并协调技术团队处理系统问题及功能优化需求。</li>
+                </ul>
+              </div>
+
+              <div class="pblock">
+                <p class="pblock-label">项目成果</p>
+                <div class="proj-out">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                  <p>完成生产、化验、设备、仓储<b style="font-weight:600">4个核心模块</b>实施及上线支持，推动生产及仓储等关键业务流程实现数字化管理，并完成<b style="font-weight:600">ERP相关业务数据衔接</b>及上线后的持续运维。</p>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 02 -->
+          <article class="proj reveal">
+            <div class="proj-top">
+              <span class="proj-no">02</span>
+              <h3>浙江省公安数字化远程取证系统建设项目</h3>
+              <div class="proj-meta">
+                <span>2023.07 – 2025.07</span>
+                <span class="dot" aria-hidden="true"></span>
+                <span class="role">项目交付工程师</span>
+              </div>
+              <div class="proj-tags">
+                <span class="tag">项目交付</span>
+                <span class="tag">音视频</span>
+                <span class="tag">系统部署</span>
+                <span class="tag">联调</span>
+              </div>
+            </div>
+            <div class="proj-body">
+              <div class="pblock">
+                <p class="pblock-label">项目背景</p>
+                <p>参与公安数字化远程取证系统建设及项目现场交付，通过音视频及数字化技术支持远程取证业务，完成相关设备、系统及业务平台的部署与联调。</p>
+              </div>
+              <div class="pblock">
+                <p class="pblock-label">负责工作</p>
+                <ul class="xlist">
+                  <li>参与项目现场实施与交付支持，负责<b>设备调试、系统部署及功能验证</b>。</li>
+                  <li>配合客户完成<b>音视频设备及相关业务系统对接</b>，参与现场联调测试及问题处理。</li>
+                  <li>根据客户现场需求开展需求沟通，整理系统问题并<b>协调研发、产品等团队</b>推进定位和解决。</li>
+                  <li>参与<b>用户操作培训及上线后的运行维护</b>，支持多地市客户现场交付及系统应用。</li>
+                </ul>
+              </div>
+              <div class="pblock">
+                <p class="pblock-label">项目成果</p>
+                <div class="proj-out">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                  <p>参与浙江13个区县及丽水、台州等区域项目交付，支持多方系统及设备联调，并参与用户培训和上线保障。</p>
+                </div>
+                <div class="pstats">
+                  <span class="pstat"><b>13<i>个区县</i></b>项目交付覆盖</span>
+                  <span class="pstat"><b>系统部署</b>设备与平台落地</span>
+                  <span class="pstat"><b>设备联调</b>多方系统对接</span>
+                  <span class="pstat"><b>多地交付</b>丽水 · 台州等区域</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 03 -->
+          <article class="proj reveal">
+            <div class="proj-top">
+              <span class="proj-no">03</span>
+              <h3>温州市公安局视频会议系统维保项目</h3>
+              <div class="proj-meta">
+                <span>2022.07 – 2023.07</span>
+                <span class="dot" aria-hidden="true"></span>
+                <span class="role">技术支持工程师</span>
+              </div>
+              <div class="proj-tags">
+                <span class="tag">技术支持</span>
+                <span class="tag">视频会议</span>
+                <span class="tag">运维</span>
+              </div>
+            </div>
+            <div class="proj-body">
+              <div class="pblock">
+                <p class="pblock-label">项目背景</p>
+                <p>负责温州市公安系统视频会议相关终端及配套系统的日常运行维护和现场技术支持，保障市、区县及基层单位视频会议正常开展。</p>
+              </div>
+              <div class="pblock">
+                <p class="pblock-label">主要工作</p>
+                <ul class="xlist">
+                  <li>负责视频会议终端、服务器及相关设备的<b>现场调试、巡检和故障处理</b>，支持温州市13个区县、30+基层单位的日常使用。</li>
+                  <li>根据会议及客户需求提供<b>现场技术支持</b>，处理设备、系统及连接异常，<b>协调内部技术人员及合作厂商</b>推进问题解决。</li>
+                  <li>配合开展<b>系统维护、用户培训及现场操作指导</b>，根据客户反馈持续跟进设备和系统运行问题。</li>
+                </ul>
+              </div>
+              <div class="pblock">
+                <p class="pblock-label">项目成果</p>
+                <div class="proj-out">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+                  <p>支持多区域视频会议系统稳定运行，完成日常巡检、故障处理及现场保障，满足大型会议及日常视频会议使用需求。</p>
+                </div>
+                <div class="pstats">
+                  <span class="pstat"><b>13<i>个区县</i></b>保障覆盖</span>
+                  <span class="pstat"><b>30+<i>基层单位</i></b>日常使用支持</span>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- ===== 04 Skills / 专业技能 ===== -->
+    <section class="section skills" id="skills">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="eyebrow">Capabilities</p>
+          <h2 class="section-title">专业技能<span class="en">Technology &amp; Capability</span></h2>
+        </header>
+
+        <div class="skills-grid">
+          <article class="scard reveal" style="--d:0">
+            <span class="s-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m12.8 2.2a2 2 0 0 0-1.6 0L2.6 6.1a1 1 0 0 0 0 1.8l8.6 3.9a2 2 0 0 0 1.6 0l8.6-3.9a1 1 0 0 0 0-1.8Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg>
+            </span>
+            <h3>企业软件实施与项目交付</h3>
+            <p class="s-en">Implementation &amp; Delivery</p>
+            <p>熟悉<b>需求沟通、系统部署、功能配置、测试验证、上线支持</b>及问题跟踪等实施流程。</p>
+          </article>
+
+          <article class="scard reveal" style="--d:1">
+            <span class="s-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M17 18h1"/><path d="M12 18h1"/><path d="M7 18h1"/></svg>
+            </span>
+            <h3>MES / WMS 业务实施</h3>
+            <p class="s-en">MES &amp; WMS</p>
+            <p>具备MES项目实施经验，了解<b>生产、化验、设备、仓储</b>等业务模块，重点接触<b>生产管理及仓储管理（WMS）</b>。</p>
+          </article>
+
+          <article class="scard reveal" style="--d:2">
+            <span class="s-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a5 5 0 0 0 0-10 5 5 0 0 0-5 5"/><path d="M12 7a5 5 0 0 1 0 10 5 5 0 0 1 5-5"/><circle cx="12" cy="12" r="10"/></svg>
+            </span>
+            <h3>SaaS及AI平台运营</h3>
+            <p class="s-en">SaaS &amp; AI Operations</p>
+            <p>具备企业SaaS平台运营支持经验，熟悉<b>客户需求、工单、数据核对、API/小程序接入</b>及跨部门协调流程，了解<b>RPA+AI企业数据采集</b>及报告应用场景。</p>
+          </article>
+
+          <article class="scard reveal" style="--d:3">
+            <span class="s-ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9.94 15.5A2 2 0 0 0 8.5 14.06l-6.13-1.58a.5.5 0 0 1 0-.96L8.5 9.94A2 2 0 0 0 9.94 8.5l1.58-6.13a.5.5 0 0 1 .96 0L14.06 8.5a2 2 0 0 0 1.44 1.44l6.13 1.58a.5.5 0 0 1 0 .96l-6.13 1.58a2 2 0 0 0-1.44 1.44l-1.58 6.13a.5.5 0 0 1-.96 0z"/></svg>
+            </span>
+            <h3>数据及AI工具基础</h3>
+            <p class="s-en">Data &amp; AI Tools</p>
+            <p>了解<b>MySQL基础查询、Postman基础接口调试及Axure基础原型制作</b>；使用<b>ChatGPT、通义千问、豆包</b>等AI工具辅助信息整理、需求梳理及轻量级工具原型制作。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 05 Education / 教育经历 ===== -->
+    <section class="section education" id="education">
+      <div class="container">
+        <header class="section-head reveal">
+          <p class="eyebrow">Education</p>
+          <h2 class="section-title">教育经历<span class="en">Academic Background</span></h2>
+        </header>
+
+        <div class="edu-card reveal">
+          <span class="edu-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21.42 10.92a1 1 0 0 0-.02-1.84L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.83l8.57 3.91a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg>
+          </span>
+          <div>
+            <h3>黑龙江财经学院</h3>
+            <p class="edu-sub">计算机科学与技术 · 本科</p>
+          </div>
+          <span class="edu-date">2018.09 – 2022.07</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Contact / 页脚 ===== -->
+  <footer class="footer" id="contact">
+    <div class="container">
+      <p class="footer-cta reveal">Let's connect · Open to opportunities</p>
+      <h2 class="reveal">与我联系</h2>
+      <p class="f-role reveal">企业信息化项目交付 · MES软件实施 · AI财税平台运营</p>
+      <div class="f-links reveal">
+        <a class="f-link primary" href="https://github.com/blue-lmh" target="_blank" rel="noopener noreferrer">
+          <svg class="g-mark" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.05-.13-.36-1.04.08-2.18 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.14.13 2.05.08 2.18.51.55.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.94-.01 2.21 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+          github.com/blue-lmh
+        </a>
+        <a class="f-link" href="mailto:1423573075@qq.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          1423573075@qq.com
+        </a>
+      </div>
+      <div class="f-bottom">
+        <span>© 2026 栾明昊 · Luan Minghao</span>
+        <a class="to-top" href="#top">回到顶部 ↑</a>
+      </div>
+    </div>
+  </footer>
+  <script>
+(function () {
+  "use strict";
+
+  var body = document.body;
+  var nav = document.getElementById("nav");
+  var toggle = document.getElementById("navToggle");
+  var links = Array.prototype.slice.call(document.querySelectorAll("#navLinks a"));
+
+  /* ---- Nav: scrolled state ---- */
+  function onScroll() {
+    nav.classList.toggle("is-scrolled", window.scrollY > 12);
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  /* ---- Nav: mobile menu ---- */
+  toggle.addEventListener("click", function () {
+    var open = body.classList.toggle("nav-open");
+    toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    toggle.setAttribute("aria-label", open ? "关闭菜单" : "打开菜单");
+  });
+  links.forEach(function (a) {
+    a.addEventListener("click", function () {
+      body.classList.remove("nav-open");
+      toggle.setAttribute("aria-expanded", "false");
+    });
+  });
+  window.addEventListener("resize", function () {
+    if (window.innerWidth > 860) body.classList.remove("nav-open");
+  });
+
+  /* ---- Scroll reveal (IntersectionObserver) ---- */
+  var revealEls = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
+  if ("IntersectionObserver" in window) {
+    var revealIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add("in");
+          revealIO.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+    revealEls.forEach(function (el) { revealIO.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add("in"); });
+  }
+
+  /* ---- Active nav link tracking ---- */
+  var sections = links
+    .map(function (a) { return document.querySelector(a.getAttribute("href")); })
+    .filter(Boolean);
+  if ("IntersectionObserver" in window && sections.length) {
+    var spyIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var id = "#" + e.target.id;
+        links.forEach(function (a) {
+          a.classList.toggle("active", a.getAttribute("href") === id);
+        });
+      });
+    }, { rootMargin: "-45% 0px -50% 0px" });
+    sections.forEach(function (s) { spyIO.observe(s); });
+  }
+})();
+  </script>
+</body>
+</html>
